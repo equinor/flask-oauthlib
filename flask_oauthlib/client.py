@@ -403,6 +403,9 @@ class OAuthRemoteApp(object):
             uri, headers, data, method
         )
 
+        if method is None:
+            raise Exception("method should be an http method.")
+
         log.debug('Request %r with %r method' % (uri, method))
         try:
             s = Session()
