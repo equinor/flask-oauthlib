@@ -16,7 +16,7 @@ from functools import wraps
 from oauthlib.common import to_unicode, PY3, add_params_to_uri
 from flask import request, redirect, json, session, current_app
 from werkzeug import url_quote, url_decode, url_encode
-from werkzeug import parse_options_header, cached_property
+from werkzeug.utils import parse_options_header, cached_property
 from .utils import to_bytes
 try:
     from urlparse import urljoin
