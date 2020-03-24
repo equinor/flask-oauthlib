@@ -1,4 +1,5 @@
 Flask>=0.12.3
+cachelib==0.1
 mock==2.0.0
 oauthlib==2.0.6
 requests-oauthlib==0.8.0
