@@ -182,7 +182,7 @@ class OAuthResponse(object):
     @property
     def status(self):
         """The status code of the response."""
-        return self._resp.code
+        return self._resp.status_code
 
 
 class OAuthException(RuntimeError):
@@ -608,7 +608,7 @@ class OAuthRemoteApp(object):
                 'Invalid token response from %s' % self.name,
                 type='token_generation_failed'
             )
-        if resp.code not in (200, 201):
+        if resp.status_code not in (200, 201):
             message = 'Failed to generate request token'
             if 'oauth_problem' in data:
                 message += ' (%s)' % data['oauth_problem']
@@ -652,7 +652,7 @@ class OAuthRemoteApp(object):
             method=self.access_token_method
         )
         data = parse_response(resp, content)
-        if resp.code not in (200, 201):
+        if resp.status_code not in (200, 201):
             raise OAuthException(
                 'Invalid response from %s' % self.name,
                 type='invalid_response', data=data
@@ -696,7 +696,7 @@ class OAuthRemoteApp(object):
             )
 
         data = parse_response(resp, content, content_type=self.content_type)
-        if resp.code not in (200, 201):
+        if resp.status_code not in (200, 201):
             raise OAuthException(
                 'Invalid response from %s' % self.name,
                 type='invalid_response', data=data
