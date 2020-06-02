@@ -698,7 +698,7 @@ class OAuthRemoteApp(object):
         data = parse_response(resp, content, content_type=self.content_type)
         if resp.status_code not in (200, 201):
             raise OAuthException(
-                'Invalid response from %s' % self.name,
+                'Invalid response from %s: %s %s' % (self.name, resp.status_code, data),
                 type='invalid_response', data=data
             )
         return data
